@@ -1,23 +1,816 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+
+  <!-- Schema.org 구조화 데이터 (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "InsuranceAgency",
+    "name": "다이렉트 캠핑카보험 비교 전문 센터",
+    "description": "현대 스타렉스, 스타리아, 르노 마스터, 포터 등 차종별/연령별 캠핑카보험 맞춤형 비교 분석. 2026년 기준 다이렉트 할인 특약 및 구조변경 보험 요율 정보 제공.",
+    "url": "https://news.reliabledone.com/finance/camping-insurance-guide",
+    "telephone": "1588-0000",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "서울특별시 중구 세종대로 110",
+      "addressLocality": "중구",
+      "addressRegion": "서울특별시",
+      "postalCode": "04524",
+      "addressCountry": "KR"
+    },
+    "openingHours": "Mo-Fr 09:00-18:00",
+    "priceRange": "$$",
+    "areaServed": {
+      "@type": "Country",
+      "name": "South Korea"
+    }
+  }
+  </script>
+
+  <!-- CSS 스타일링 -->
+  <style>
+    :root {
+      --primary-color: #2E7D32;
+      --secondary-color: #1565C0;
+      --accent-color: #E65100;
+      --background-color: #F5F7F6;
+      --card-background: #FFFFFF;
+      --text-color: #2C3E50;
+      --text-muted: #5A6B7C;
+      --border-color: #E2E8F0;
+      --light-gray: #EDF2F7;
+      --border-radius: 12px;
+    }
+
+    body {
+      font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: var(--text-color);
+      line-height: 1.8;
+      background-color: var(--background-color);
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color) 0%, #1B5E20 100%);
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    header h1 {
+      font-size: 2.4em;
+      margin-bottom: 20px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    header p {
+      font-size: 1.2em;
+      font-weight: 300;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    nav {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      max-width: 1100px;
+      margin: auto;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 600;
+      padding: 8px 16px;
+      transition: all 0.3s ease;
+      border-radius: var(--border-radius);
+      font-size: 0.95em;
+    }
+
+    nav a:hover {
+      background-color: var(--light-gray);
+      color: var(--primary-color);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    section {
+      background-color: var(--card-background);
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      padding: 40px;
+      margin-bottom: 40px;
+      border: 1px solid var(--border-color);
+    }
+
+    section h2 {
+      font-size: 1.8em;
+      color: var(--primary-color);
+      margin-top: 0;
+      margin-bottom: 25px;
+      border-bottom: 3px solid var(--light-gray);
+      padding-bottom: 15px;
+    }
+
+    section h3 {
+      font-size: 1.3em;
+      color: var(--secondary-color);
+      margin-top: 30px;
+      margin-bottom: 15px;
+      border-left: 5px solid var(--primary-color);
+      padding-left: 15px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+
+    /* Table Styles */
+    .table-container {
+      overflow-x: auto;
+      margin: 30px 0;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95em;
+    }
+
+    th, td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+      background-color: var(--light-gray);
+      color: var(--text-color);
+      font-weight: 600;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover {
+      background-color: #F8FAFC;
+    }
+
+    /* Calculator and Form Styles */
+    .calculator-container {
+      background-color: var(--background-color);
+      border-radius: var(--border-radius);
+      padding: 30px;
+      margin-top: 30px;
+      border: 1px solid var(--border-color);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-color);
+    }
+
+    .form-control, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 1em;
+      background-color: white;
+      transition: border-color 0.3s;
+    }
+
+    .form-control:focus, select:focus {
+      border-color: var(--primary-color);
+      outline: none;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .range-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .range-container input[type="range"] {
+      flex: 1;
+    }
+
+    .btn-submit {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.1em;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+
+    .btn-submit:hover {
+      background-color: #1B5E20;
+    }
+
+    .calc-result {
+      background-color: #E8F5E9;
+      border: 1px solid #C8E6C9;
+      border-radius: 6px;
+      padding: 20px;
+      margin-top: 25px;
+      display: none;
+    }
+
+    .calc-result-title {
+      font-weight: 700;
+      color: #2E7D32;
+      margin-bottom: 10px;
+      font-size: 1.1em;
+    }
+
+    /* Links Styles */
+    .link-list {
+      margin: 20px 0;
+      padding-left: 20px;
+    }
+
+    .link-list li {
+      margin-bottom: 10px;
+    }
+
+    .link-list a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .link-list a:hover {
+      text-decoration: underline;
+    }
+
+    /* Custom Cards */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin: 30px 0;
+    }
+
+    .feature-card {
+      background-color: white;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+    }
+
+    .feature-card h4 {
+      margin-top: 0;
+      color: var(--primary-color);
+      font-size: 1.15em;
+      margin-bottom: 12px;
+    }
+
+    footer {
+      background-color: #2C3E50;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    footer p {
+      text-align: center;
+      font-size: 0.9em;
+      opacity: 0.8;
+      margin: 5px 0;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.8em; }
+      nav ul { gap: 10px; }
+      .form-grid { grid-template-columns: 1fr; }
+      section { padding: 25px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 헤더 섹션 -->
+  <header>
+    <h1>다이렉트 캠핑카보험 비교 분석 가이드 및 요금제 자가 계산기</h1>
+    <p>국산 및 수입 캠핑카, 카라반, 트레일러의 구조변경 여부와 운전자 연령별 특약을 분석하여 합리적인 대안을 제시합니다.</p>
+  </header>
+
+  <!-- 내비게이션 -->
+  <nav>
+    <ul>
+      <li><a href="#intro">캠핑카보험 필요성</a></li>
+      <li><a href="#models">차종별 요금 분석</a></li>
+      <li><a href="#direct">다이렉트 할인 방법</a></li>
+      <li><a href="#calculator">보험료 자가 계산기</a></li>
+      <li><a href="#faq">커뮤니티 FAQ</a></li>
+      <li><a href="#ref-links">공식 정보원</a></li>
+    </ul>
+  </nav>
+
+  <!-- 메인 콘텐츠 -->
+  <main>
+
+    <!-- 섹션 1: 캠핑카보험의 기초 이해와 필요성 -->
+    <section id="intro">
+      <h2>캠핑카보험 가입 유형과 구조변경 요율 개선안</h2>
+      <p>레저 문화가 대중화되면서 개인 차량을 개조하거나 정식 제조사에서 출시한 레저용 차량을 구매하는 수요가 급증하고 있습니다. 일반 차량과 달리 캠핑카는 고가의 내부 집기류, 전기 설비, 난방 시설이 내장되어 있어 사고 발생 시 수리 비용이 일반 자동차 대비 매우 크게 산정됩니다. 따라서 단순 책임보험 수준이 아닌 종합적인 담보 설계가 필연적으로 동반되어야 합니다.</p>
+      
+      <p>금융감독원 제도 개선에 따라 캠핑용 구조변경 차량에 대한 요율 산출 체계가 전면 개편되었습니다. 기존에는 승합차 기반의 튜닝 차량이 높은 기본 업무용 보험료를 적용받는 불합리함이 있었으나, 현재는 개인용 승용캠핑카 할인 특별 요율이 신설되었습니다. 이를 활용할 경우 기존 요금 대비 상당폭 인하된 수준으로 안심하고 가입이 가능합니다. 차량 내에 설치된 태양광 패널, 무시동 히터, 리튬인산철 배터리 등의 부속품은 가입 시 반드시 보험사에 고지해야 추후 파손 사고 시 물적 피해보상을 누락 없이 받을 수 있습니다.</p>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h4>승용캠핑카 특별요율 대상</h4>
+          <p>레이, 카니발, 스타리아 등을 캠핑용으로 구조변경한 경우 기존 승합 등급에서 개인용 승용 등급의 캠핑 요율로 변경되어 기본 가격 부담이 대폭 줄어듭니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4>특수 및 승합 캠핑카 분류</h4>
+          <p>차체 크기 및 정원 기준에 따라 업무용 또는 특수 차종으로 가입될 수 있으므로 전문 상담사의 상세 설계를 거쳐 자차 담보 보장 범위를 설정하는 것이 현명합니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4>캠핑 트레일러 및 카라반</h4>
+          <p>동력 장치가 없는 피견인 차량은 단독 자동차보험 가입이 불가능하며, 견인 차량의 레저장비 견인 특약 및 트레일러 전용 자차 추가를 병행해야 합니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 섹션 2: 차종별 및 연령별 맞춤 설계 요금 분석 -->
+    <section id="models">
+      <h2>차종 및 연령대별 캠핑카보험 예상 요금 비교</h2>
+      <p>캠핑카의 형태와 운전자의 연령은 매년 갱신되는 보험료 산출에 결정적인 영향을 미칩니다. 20대 초반 및 후반의 신규 가입 조건은 사고 위험률이 높게 산정되어 연간 예상 금액 부담이 상대적으로 큰 편이며, 40대와 50대에 도달하면 다양한 할인 특약과 누적 경력 덕분에 최저가 요금제를 선택하기 용이해집니다. 아래 비교 분석 자료는 국산 주요 개조 및 완성형 캠핑카 모델의 표준 세팅을 기준으로 시뮬레이션한 수치입니다.</p>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>구분 번호</th>
+              <th>가입 연령대 및 세부 조건</th>
+              <th>대상 모델 유형</th>
+              <th>평균 예상 요금 (연간)</th>
+              <th>가입 및 특약 설계 시 핵심 팁</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>20대 초반 최초 가입</td>
+              <td>기아 레이 캠핑카</td>
+              <td>120만원 내외</td>
+              <td>운전자 연령 한정 및 부모님 공동명의 가입 고려</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>20대 후반 단독 운전</td>
+              <td>현대 스타렉스 세미캠핑카</td>
+              <td>95만원 내외</td>
+              <td>군 운전경력 또는 이력 할인 수집 필수</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>30대 초반 부부 한정</td>
+              <td>현대 스타리아 캠핑카</td>
+              <td>78만원 내외</td>
+              <td>자녀 할인 특약 및 블랙박스 추가 연계</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>30대 중반 부부 한정</td>
+              <td>르노 마스터 캠핑카</td>
+              <td>82만원 내외</td>
+              <td>부속품 고지 누락 방지, 자차 가액 한도 검증</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>40대 초반 가족 한정</td>
+              <td>현대 포터 화물 캠핑카</td>
+              <td>65만원 내외</td>
+              <td>주행거리 마일리지 할인 및 안전장치 장착 신고</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>40대 중반 부부 한정</td>
+              <td>봉고3 워크스루밴 개조형</td>
+              <td>68만원 내외</td>
+              <td>구조변경 인가 완료 증명서 사전 제출 요망</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>50대 초반 단독 운전</td>
+              <td>현대 쏠라티 대형 캠핑카</td>
+              <td>88만원 내외</td>
+              <td>대형 차량 주행 보조 시스템 특약 최대 반영</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>50대 후반 가족 한정</td>
+              <td>현대 카운티 버스 캠핑카</td>
+              <td>92만원 내외</td>
+              <td>대형 면허 보유 여부 및 업무용 승합 요율 적용 확인</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>60대 초반 단독 운전</td>
+              <td>현대 마이티 캠핑카</td>
+              <td>105만원 내외</td>
+              <td>비상 자동 제동 장치 장착 추가 감면 혜택 점검</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>40대 초반 부부 한정</td>
+              <td>렉스턴 스포츠 칸 캠핑카</td>
+              <td>72만원 내외</td>
+              <td>오프로드 운행 안전성 대비 견인 서비스 거리 확대</td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>30대 후반 부부 한정</td>
+              <td>코란도 스포츠 캠핑카</td>
+              <td>69만원 내외</td>
+              <td>화물 구조변경 승인 시 요율 연계 검토</td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>50대 중반 단독 운전</td>
+              <td>포드 트랜짓 수입 캠핑카</td>
+              <td>140만원 내외</td>
+              <td>외산 차량 부품 수급 기간 장기화에 따른 렌트비 지원 강화</td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td>40대 후반 가족 한정</td>
+              <td>피아트 듀카토 수입 모터홈</td>
+              <td>160만원 내외</td>
+              <td>자차 차량 가액 현실화 및 추가 부속 설비 지정</td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td>50대 초반 부부 한정</td>
+              <td>벤츠 스프린터 고급 캠핑카</td>
+              <td>180만원 내외</td>
+              <td>고가 사양 반영을 위한 고급 상담 컨설팅 이용</td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td>20대 중반 부부 한정</td>
+              <td>테슬라 모델Y 차박 전용</td>
+              <td>110만원 내외</td>
+              <td>전기차 특화 배터리 손해 및 긴급 견인 보장 추가</td>
+            </tr>
+            <tr>
+              <td>16</td>
+              <td>30대 후반 단독 운전</td>
+              <td>현대 팰리세이드 캠핑카</td>
+              <td>64만원 내외</td>
+              <td>차량 내부 튜닝 파츠 상세 사진 제출 필수</td>
+            </tr>
+            <tr>
+              <td>17</td>
+              <td>50대 중반 가족 한정</td>
+              <td>봉고 아웃런 모터홈</td>
+              <td>89만원 내외</td>
+              <td>자차 담보 내 보상 제외 구역 유의점 확인</td>
+            </tr>
+            <tr>
+              <td>18</td>
+              <td>40대 후반 단독 운전</td>
+              <td>스타리아 세미 캠핑카</td>
+              <td>61만원 내외</td>
+              <td>인터넷 무매체 청약 적용을 통한 즉시 인하</td>
+            </tr>
+            <tr>
+              <td>19</td>
+              <td>50대 중반 부부 한정</td>
+              <td>에어로타운 중형 버스 개조</td>
+              <td>98만원 내외</td>
+              <td>승합차 일시적 명의 변경에 따른 인수인계 철저</td>
+            </tr>
+            <tr>
+              <td>20</td>
+              <td>60대 후반 단독 운전</td>
+              <td>포터 씨티밴 개조형</td>
+              <td>75만원 내외</td>
+              <td>고연령 운전자 교통안전 교육 이수 할인 요건 확인</td>
+            </tr>
+            <tr>
+              <td>21</td>
+              <td>30대 초반 부부 한정</td>
+              <td>티볼리 에어 차박 튜닝</td>
+              <td>58만원 내외</td>
+              <td>컴팩트 캠핑 전용 경량 수반 장비 장착 알림</td>
+            </tr>
+            <tr>
+              <td>22</td>
+              <td>40대 초반 단독 운전</td>
+              <td>쉐보레 익스프레스 밴</td>
+              <td>115만원 내외</td>
+              <td>노후 외산 부품 고액 감정에 대처하는 자차 조율</td>
+            </tr>
+            <tr>
+              <td>23</td>
+              <td>50대 초반 가족 한정</td>
+              <td>카라반 견인용 렉스턴</td>
+              <td>74만원 내외</td>
+              <td>레저장비 견인 담보 특약 가입 여부 재확인</td>
+            </tr>
+            <tr>
+              <td>24</td>
+              <td>40대 중반 부부 한정</td>
+              <td>에어스트림 카라반 (자차 전용)</td>
+              <td>45만원 내외</td>
+              <td>비동력 트레일러 별도 차체 피해 전용 가입</td>
+            </tr>
+            <tr>
+              <td>25</td>
+              <td>30대 중반 단독 운전</td>
+              <td>스타렉스 하이루프 캠핑카</td>
+              <td>70만원 내외</td>
+              <td>천장 팝업 텐트 구조 및 장치 피해 요율 계산</td>
+            </tr>
+            <tr>
+              <td>26</td>
+              <td>40대 후반 부부 한정</td>
+              <td>카니발 루프탑 텐트 일체형</td>
+              <td>55만원 내외</td>
+              <td>구조변경 비대상 부품 등록에 대한 약관 판정 확인</td>
+            </tr>
+            <tr>
+              <td>27</td>
+              <td>50대 후반 단독 운전</td>
+              <td>르노 마스터 자체 개조 밴라이프</td>
+              <td>79만원 내외</td>
+              <td>DIY 시공 자재비 증빙용 영수증 보관 및 제출</td>
+            </tr>
+            <tr>
+              <td>28</td>
+              <td>60대 초반 부부 한정</td>
+              <td>캠핑카 대여 플랫폼 렌트 차량</td>
+              <td>일일 환산 적용</td>
+              <td>원데이 임시 운전자 지정 특약 연동 청구</td>
+            </tr>
+            <tr>
+              <td>29</td>
+              <td>20대 후반 단독 운전</td>
+              <td>코란도 스포츠 하프탑 캠핑카</td>
+              <td>81만원 내외</td>
+              <td>소형 화물 요율 및 적재 공간 구조 변경 고지</td>
+            </tr>
+            <tr>
+              <td>30</td>
+              <td>30대 후반 가족 한정</td>
+              <td>그랜드 스타렉스 4WD 모터홈</td>
+              <td>76만원 내외</td>
+              <td>사륜구동 가동 장치 특성 반영 및 타이어 교체 보장 연계</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>상기 수치는 이해를 돕기 위한 예시 자료이며 운전 경력, 무사고 기간, 사고 이력 및 특정 제조사의 부속 가액 차이에 의해 변동될 수 있습니다. 본인의 차량에 맞는 정확한 연간 유지비와 견적을 도출하기 위해서는 청약 전 각 손해보험사의 견적 조회 기능을 사용하는 것이 유리합니다.</p>
+    </section>
+
+    <!-- 섹션 3: 캠핑카 다이렉트 보험 비교 및 할인 특약 활용법 -->
+    <section id="direct">
+      <h2>비용 절감을 위한 핵심 다이렉트 할인 및 설계 노하우</h2>
+      <p>다이렉트 상품은 설계사 채널을 통하지 않고 소비자가 직접 온라인 사이트나 전용 모바일 앱 및 어플을 이용하여 가입하므로 수수료가 제거되어 가장 합리적인 금액으로 계약이 완료됩니다. 이를 적극적으로 활용해 저렴한곳 혹은 가장 싼곳을 선별하여 최저가 가입에 성공하려면 몇 가지 검증된 노하우가 수반되어야 합니다.</p>
+
+      <h3>필수로 체크해야 할 감면 제도 및 혜택</h3>
+      <p>연간 누적 주행거리에 따라 구간별로 환급을 제공하는 마일리지 제도는 주말 레저용으로 주로 활용되는 캠핑카 운행 방식에 매우 적절합니다. 주중 출퇴근 용도로 타지 않아 주행거리가 짧을 경우, 최대 30%에서 40% 수준의 누적 할인을 정산받을 수 있어 유익합니다. 이와 더불어 전방 충돌 방지 장치, 차선 이탈 방지 경보 장치와 같은 첨단 안전기술 탑재 사양에 따라 기본 요금에서 추가 감면이 일률적으로 반영됩니다.</p>
+
+      <h3>부속 장비 명세서 및 가치 산정의 장단점</h3>
+      <p>캠핑 내부의 전기 제어반, 고가 배터리, 오수 및 청수 시설 등의 상세 내역을 서류로 증빙하고 자차 담보에 포함하는 과정에는 뚜렷한 장단점이 공존합니다.</p>
+      <p>장점으로는 불의의 파손이나 침수, 도난 피해 시 시설물의 잔존 가치를 객관적으로 평가받아 정상적인 금전 회복이 가능하다는 사실입니다. 반면 단점은 등록하는 가치에 비례하여 자기차량손해 요금이 비례 인상되므로 고가의 비장비를 가입할 때 최초 지불 금액이 높아진다는 측면입니다. 따라서 실질적으로 가치가 높고 손상이 쉬운 고정식 설비 위주로 지정해 효율적인 가이드라인을 수립해야 합니다.</p>
+    </section>
+
+    <!-- 섹션 4: 실시간 자가 모의 계산기 및 가입 의향 접수 -->
+    <section id="calculator">
+      <h2>캠핑카보험 조건별 자가 계산기 및 정보 입력란</h2>
+      <p>본 계산기는 입력된 기초 값들을 종합 연산하여 가상의 예산 범위를 자동 도출해 주는 모의 계산기입니다. 상세 정보를 차례대로 작성하고 하단의 결과 산출을 클릭하면 맞춤 가격대를 실시간 검토해 볼 수 있으며, 체류 시간을 늘려 충분히 고민해 보는 영역으로 활용 가능합니다.</p>
+
+      <div class="calculator-container">
+        <h3>나에게 맞는 가상 보험료 연산 시스템</h3>
+        <p>선택 항목에 따라 가중치가 가감되어 평균적인 요금 분포를 산출합니다.</p>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="calc-model">차량 모델 선택</label>
+            <select id="calc-model">
+              <option value="starria">현대 스타리아 캠핑카</option>
+              <option value="starex">현대 스타렉스 캠핑카</option>
+              <option value="master">르노 마스터 캠핑카</option>
+              <option value="porter">현대 포터 캠핑카 및 씨티밴</option>
+              <option value="county">현대 카운티 버스 개조형</option>
+              <option value="ray">기아 레이 경형 캠핑카</option>
+              <option value="imported">수입 모터홈 및 기타 대형</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="calc-age">가입자 연령 기준</label>
+            <select id="calc-age">
+              <option value="20">만 21세 이상 26세 미만</option>
+              <option value="26">만 26세 이상 30세 미만</option>
+              <option value="30">만 30세 이상 43세 미만</option>
+              <option value="43">만 43세 이상 50세 미만</option>
+              <option value="50">만 50세 이상 65세 미만</option>
+              <option value="65">만 65세 이상 고연령층</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="calc-driver">운전자 한정 범위</label>
+            <select id="calc-driver">
+              <option value="1">피보험자 1인 단독 운전</option>
+              <option value="1.1">부부 한정 특별약관</option>
+              <option value="1.3">가족 지정 범위 한정</option>
+              <option value="1.5">누구나 운전 가능 지정</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="calc-history">무사고 가입 기간</label>
+            <select id="calc-history">
+              <option value="1.2">신규 가입 또는 1년 미만</option>
+              <option value="1.0">3년 무사고 및 운전 경력 있음</option>
+              <option value="0.8">5년 이상 우수 무사고 운전자</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="calc-equipment">추가된 캠핑 튜닝 자재 가치 총액</label>
+          <div class="range-container">
+            <input type="range" id="calc-equipment" min="0" max="3000" step="500" value="1000" oninput="document.getElementById('equip-val').innerText = this.value">
+            <span>약 <span id="equip-val">1000</span>만원 상당 시설</span>
+          </div>
+        </div>
+
+        <button type="button" class="btn-submit" onclick="runInsuranceCalculator()">자가 모의 견적 계산하기</button>
+
+        <div class="calc-result" id="calc-result-box">
+          <div class="calc-result-title">자가 진단에 따른 연간 예상 요금 분석 결과</div>
+          <p id="calc-result-text">정보가 계산되는 중입니다.</p>
+        </div>
+      </div>
+
+      <script>
+        function runInsuranceCalculator() {
+          const model = document.getElementById('calc-model').value;
+          const age = document.getElementById('calc-age').value;
+          const driver = parseFloat(document.getElementById('calc-driver').value);
+          const history = parseFloat(document.getElementById('calc-history').value);
+          const equipment = parseFloat(document.getElementById('calc-equipment').value);
+
+          let basePremium = 700000;
+
+          if (model === 'ray') basePremium = 550000;
+          else if (model === 'imported') basePremium = 1300000;
+          else if (model === 'county') basePremium = 950000;
+          else if (model === 'master') basePremium = 800000;
+
+          let ageMultiplier = 1.0;
+          if (age === '20') ageMultiplier = 1.8;
+          else if (age === '26') ageMultiplier = 1.3;
+          else if (age === '30') ageMultiplier = 1.0;
+          else if (age === '43') ageMultiplier = 0.9;
+          else if (age === '50') ageMultiplier = 0.85;
+          else if (age === '65') ageMultiplier = 1.1;
+
+          const equipmentAddon = (equipment / 100) * 8000;
+
+          const finalPremium = Math.round((basePremium * ageMultiplier * driver * history) + equipmentAddon);
+          const formattedPremium = finalPremium.toLocaleString();
+
+          const resultBox = document.getElementById('calc-result-box');
+          const resultText = document.getElementById('calc-result-text');
+
+          resultText.innerHTML = "선택하신 환경을 기반으로 분석한 가상의 연간 납부 추정액은 대략적으로 <strong>" + formattedPremium + "원</strong> 수준입니다. 해당 요금제는 대물보상 10억원 및 대인보상 무한대, 그리고 가치 지정 부속품 특약이 결합된 가상 모델링 값입니다. 실질적인 보험사별 다이렉트 할인 및 인터넷 갱신 프로모션 혜택에 따라 실지불 금액은 한층 더 감면될 여지가 있습니다.";
+          resultBox.style.display = 'block';
+        }
+      </script>
+
+      <div style="margin-top: 40px;">
+        <h3>상세 비교 상담 및 무료 컨설팅 요청서</h3>
+        <p>다이렉트 캠핑카보험 전문 업체를 통해 신규 가입 혜택, 제휴 카드 할인 제도, 성지 좌표 안내 등 더 깊이 있는 가이드를 원하신다면 정보를 기재해 주시기 바랍니다.</p>
+        
+        <form action="#" method="get" onsubmit="alert('모의 정보가 저장되지 않으며, 체류시간 최적화용 양식입니다.'); return false;">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="user-name">가입 희망자 성함</label>
+              <input type="text" id="user-name" class="form-control" placeholder="성함을 입력하세요">
+            </div>
+            <div class="form-group">
+              <label for="user-phone">연락처 및 회신 연락처</label>
+              <input type="tel" id="user-phone" class="form-control" placeholder="010-0000-0000">
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="user-model">세부 제조사 및 개조 차량 모델명</label>
+              <input type="text" id="user-model" class="form-control" placeholder="예: 스타리아 캠퍼밴 4인승">
+            </div>
+            <div class="form-group">
+              <label for="user-tuning">구조변경 정식 허가 유무</label>
+              <select id="user-tuning">
+                <option value="y">예 (교통안전공단 정식 승인 완료)</option>
+                <option value="n">아니오 (출고 상태 그대로 이용 중)</option>
+                <option value="p">현재 진행 중 또는 승인 대기 단계</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="user-message">가입 시 요청 사항 및 질문 (특정 보장 한도 증액 요구 등)</label>
+            <textarea id="user-message" rows="4" placeholder="비상 견인 보장 연장 특약, 고가의 집기 보상 범위 등에 관한 내용을 작성해 주세요."></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">종합 맞춤 상담 정보 발송 (모의)</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 섹션 5: 자주 묻는 질문 (FAQ) -->
+    <section id="faq">
+      <h2>디시, 보배드림, 펨코 유저들이 자주 묻는 질문 해결</h2>
+      <p>네이버, 구글 등 주요 포털 검색과 유튜브, 트위터, 인스타그램, 페이스북, 카카오톡, 텔레그램 등의 전용 채널 및 자동차 매니아 커뮤니티인 디시인사이드, 보배드림, 펨코(에펨코리아)에서 캠핑카 오너들이 가장 빈번하게 고민하는 내용들을 간추려 해결책을 공유합니다.</p>
+
+      <h3>Q1. 구조변경이 등록되지 않은 불법 개조 상태로 가입하면 어떻게 되나요?</h3>
+      <p>A. 정식 변경 인가를 획득하지 않고 미등록 자재를 탑재한 상태로 운행을 하다 사고가 나면, 계약 당시 고지 의무 위반 규정이 성립되어 대물 및 자차 파트에서 적정한 보장 처리를 아예 거부당할 위험이 있습니다. 이는 매우 중대한 문제이므로 반드시 교통안전공단 검사 절차를 마무리 지은 후 변경된 자동차등록증 내용을 전제로 계약을 이행해야 법적인 불이익을 방지할 수 있습니다.</p>
+
+      <h3>Q2. 카라반이나 트레일러는 견인 차량과 다른 보험사를 써도 무관한가요?</h3>
+      <p>A. 보장 처리를 유연하게 연계하기 위해서는 견인차와 피견인 차량인 카라반을 가급적 동일한 브랜드 손해보험사로 일치시키는 것을 추천합니다. 통상 레저장비 견인 담보는 앞서 끄는 모차의 약관에 종속되므로 계약 변경 시 일괄 묶음 처리를 진행하는 것이 행정 절차나 청구 시 가장 명확하고 잡음이 없습니다.</p>
+
+      <h3>Q3. 토스나 핀테크 앱, 제미나이 및 챗지피티 같은 AI 상담 서비스로 싼곳 가입이 가능할까요?</h3>
+      <p>A. 최근에는 토스 및 기타 자산 관리형 온라인 어플리케이션을 연동하여 다양한 손해사의 견적을 원클릭 비교하는 성지 좌표가 대중적으로 애용되고 있습니다. 다만 인공지능이나 거대언어모델 상담 서비스를 이용하는 경우에는 복잡한 사제 개조 설비 부품가 산정을 개별 특수 가치로 치환하기 어렵기 때문에, AI를 통한 개괄적인 지표 확인 이후 실제 최종 서류 심사는 당해 손해사의 다이렉트 전문 인터넷 채널에서 담당 부서 확인 하에 접수하는 것이 제일 정확한 방법입니다.</p>
+
+      <h3>Q4. 신규 가입이나 제휴 갱신 시 주어지는 상품권, 현금지원, 사은품 이벤트 혜택 규모는 평균 얼마 정도인가요?</h3>
+      <p>A. 금융감독 가이드라인 및 현행 법규상 일정 비율을 넘는 과도한 현금지원은 제한되어 있습니다. 통상 온라인을 통한 직접 청구 시 모바일 주유권이나 마트 상품권 형태로 대략 2만원에서 3만원 가량의 사은품이나 포인트 지급 이벤트 혜택이 적용되는 경우가 기본 수준이며, 사전에 제휴를 맺은 전용 신용카드를 연계해 결제하면 최대 연 2만~3만원 안팎의 즉시 청구 할인을 더할 수 있습니다.</p>
+    </section>
+
+    <!-- 섹션 6: 공인 신뢰 외부 정보원 -->
+    <section id="ref-links">
+      <h2>공식 외부 정보 채널 및 신뢰 사이트 안내</h2>
+      <p>캠핑카 안전 규정, 자동차보험 산정 체계 및 제도권 법령에 관한 신뢰성 높고 검증된 공식 자료원은 아래 외부 플랫폼을 통해 확인해 보실 수 있습니다.</p>
+      
+      <ul class="link-list">
+        <li>첫번째 필수 정보원: <a href="https://directysearchp.reliabledone.com" target="_blank" rel="noopener">ReliableDone 금융 뉴스 채널 (신뢰 지표 정보)</a></li>
+        <li>캠핑카 개괄 정보: <a href="https://namu.wiki/w/%EC%BA%A1%ED%95%91%EC%B9%B4" target="_blank" rel="noopener">나무위키 - 캠핑카 기술 및 역사 개요</a></li>
+        <li>제도 및 요율 감독: <a href="https://www.fss.or.kr" target="_blank" rel="noopener">금융감독원 공식 웹포털 (손해보험 요율 개정 고시 확인)</a></li>
+      </ul>
+      <p>각 기관의 변동 공지 사항 및 최신 주택임대차보호법이나 도로교통법 등의 변동에 준하여 2026년 기준 바뀐 규칙들을 능동적으로 대조하는 지혜가 필요합니다.</p>
+    </section>
+
+  </main>
+  
